@@ -1,12 +1,6 @@
-function getLength(number) {
-    return number.toString().length;
-}
 function generateUniqueCode() {
     let uniqueCode = Math.floor((Math.random() * 999) + 1);
-    let codeLength = getLength(uniqueCode);
-    if (codeLength === 1) {uniqueCode = "00" + uniqueCode;}
-    else if (codeLength === 2) {uniqueCode = "0" + uniqueCode}
-    return uniqueCode;
+    return uniqueCode.toString().padStart(3, '0');
 }
 function combineSexAndCentury(sexAtBirth, yearOfBirth, isForeigner) {
     if (typeof isForeigner !== "boolean") {
