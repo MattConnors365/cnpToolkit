@@ -39,7 +39,7 @@ function generateDateOfBirthSequence(year, month, day) {
         throw new Error(`Invalid year: ${year} doesn't exist`);
     }
     const lowerCaseMonth = month.toLowerCase();
-    if (!validMonths.includes(lowerCaseMonth) || typeof month !== "string") {
+    if (!validMonths.includes(lowerCaseMonth)) {
         throw new Error(`Invalid month: ${month} doesn't exist`);
     }
     if (day < 1 || day > 31 || typeof day !== "number") {
@@ -51,9 +51,9 @@ function generateDateOfBirthSequence(year, month, day) {
     let monthDigits = (validMonths.indexOf(lowerCaseMonth) + 1).toString().padStart(2, '0');
     let dayDigits = day.toString().padStart(2, '0');
     let sequence = `${yearDigits}${monthDigits}${dayDigits}`;
-    
+
     return sequence;
 }
-function GenerateCNP(sex, yearOfBirth, monthOfBirth, dayOfBirth, countyCode) {
+function generateCNP(sex, yearOfBirth, monthOfBirth, dayOfBirth, countyCode) {
     
 }
