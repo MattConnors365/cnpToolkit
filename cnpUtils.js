@@ -1,3 +1,13 @@
+const validMonths = [
+    "january", "february", "march", "april", "may", "june",
+    "july", "august", "september", "october", "november", "december"
+];
+function getMonthNameFromNumber(monthNumber) {
+    if (monthNumber < 1 || monthNumber > 12 || typeof monthNumber !== "number") {
+        throw new Error(`Invalid month number: ${monthNumber}`);
+    }
+    return validMonths[monthNumber - 1];
+}
 function generateUniqueCode() {
     let uniqueCode = Math.floor((Math.random() * 999) + 1);
     return uniqueCode.toString().padStart(3, '0');
@@ -22,6 +32,27 @@ function combineSexAndCentury(sexAtBirth, yearOfBirth, isForeigner) {
     else if (year[1] === '0') {digit += 4} 
     else if (year[1] === '9') {digit += 0}
     return digit;
+}
+function generateDateOfBirthSequence(year, month, day) {
+    //Validate inputs
+    if (year < 1800 || year > 2099 || typeof year !== "number") {
+        throw new Error(`Invalid year: ${year} doesn't exist`);
+    }
+    const lowerCaseMonth = month.toLowerCase();
+    if (!validMonths.includes(lowerCaseMonth) || typeof month !== "string") {
+        throw new Error(`Invalid month: ${month} doesn't exist`);
+    }
+    if (day < 1 || day > 31 || typeof day !== "number") {
+        throw new Error(`Invalid day: ${day} doesn't exist`)
+    }
+
+    //Generate sequence
+    let yearDigits = year.toString().slice(-2);
+    let monthDigits = (validMonths.indexOf(lowerCaseMonth) + 1).toString().padStart(2, '0');
+    let dayDigits = day.toString().padStart(2, '0');
+    let sequence = `${yearDigits}${monthDigits}${dayDigits}`;
+    
+    return sequence;
 }
 function GenerateCNP(sex, yearOfBirth, monthOfBirth, dayOfBirth, countyCode) {
     
