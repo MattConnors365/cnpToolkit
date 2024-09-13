@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNP Toolkit</title>
+    <!--<script type="module" defer src="./script.js"></script>-->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #generatedCNP {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div id="cnpContainer">
+        <label for="isForeigner">Is Foreigner:</label>
+        <input type="checkbox" id="isForeigner" name="isForeigner">
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+
+        <label for="yearOfBirth">Year of Birth:</label>
+        <input type="number" id="yearOfBirth" name="yearOfBirth" min="1800" max="2099" required>
+
+        <label for="monthOfBirth">Month of Birth:</label>
+        <input type="number" id="monthOfBirth" name="monthOfBirth" min="1" max="12" required>
+
+        <label for="dayOfBirth">Day of Birth:</label>
+        <input type="number" id="dayOfBirth" name="dayOfBirth" min="1" max="31" required>
+
+        <label for="countyCode">County Code:</label>
+        <input type="number" id="countyCode" name="countyCode" min="1" max="52" required>
+
+        <button id="generateCnpButton">Generate CNP</button>
+    </div>
+
+    <div id="cnpOutput"></div>
+</body>
+</html>
