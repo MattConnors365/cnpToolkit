@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CNP Toolkit</title>
-    <!--<script type="module" defer src="./script.js"></script>-->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -35,7 +34,7 @@
         button:hover {
             background-color: #0056b3;
         }
-        #generatedCNP {
+        #cnpOutput {
             margin-top: 20px;
             padding: 10px;
             border: 1px solid #ccc;
@@ -44,31 +43,87 @@
     </style>
 </head>
 <body>
-    <div id="cnpContainer">
-        <label for="isForeigner">Is Foreigner:</label>
-        <input type="checkbox" id="isForeigner" name="isForeigner">
+    <div class="container">
+        <h1>CNP Toolkit</h1>
+        <div id="cnpContainer">
+            <label for="isForeigner">Is Foreigner:</label>
+            <input type="checkbox" id="isForeigner" name="isForeigner">
 
-        <label for="gender">Gender:</label>
-        <select id="gender" name="gender" required>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-        </select>
+            <label for="sex">Sex assigned at birth:</label>
+            <select id="sex" name="sex" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
 
-        <label for="yearOfBirth">Year of Birth:</label>
-        <input type="number" id="yearOfBirth" name="yearOfBirth" min="1800" max="2099" required>
+            <label for="yearOfBirth">Year of Birth:</label>
+            <input type="number" id="yearOfBirth" name="yearOfBirth" min="1800" max="2099" required>
 
-        <label for="monthOfBirth">Month of Birth:</label>
-        <input type="number" id="monthOfBirth" name="monthOfBirth" min="1" max="12" required>
+            <label for="monthOfBirth">Month of Birth:</label>
+            <input type="number" id="monthOfBirth" name="monthOfBirth" min="1" max="12" required>
 
-        <label for="dayOfBirth">Day of Birth:</label>
-        <input type="number" id="dayOfBirth" name="dayOfBirth" min="1" max="31" required>
+            <label for="dayOfBirth">Day of Birth:</label>
+            <input type="number" id="dayOfBirth" name="dayOfBirth" min="1" max="31" required>
 
-        <label for="countyCode">County Code:</label>
-        <input type="number" id="countyCode" name="countyCode" min="1" max="52" required>
+            <label for="countyName">County Name:</label>
+            <select id="countyName" name="countyName" required>
+                <option value="01">Alba</option>
+                <option value="02">Arad</option>
+                <option value="03">Argeș</option>
+                <option value="04">Bacău</option>
+                <option value="05">Bihor</option>
+                <option value="06">Bistrița-Năsăud</option>
+                <option value="07">Botoșani</option>
+                <option value="08">Brașov</option>
+                <option value="09">Brăila</option>
+                <option value="10">Buzău</option>
+                <option value="11">Caraș-Severin</option>
+                <option value="12">Cluj</option>
+                <option value="13">Constanța</option>
+                <option value="14">Covasna</option>
+                <option value="15">Dâmbovița</option>
+                <option value="16">Dolj</option>
+                <option value="17">Galați</option>
+                <option value="18">Gorj</option>
+                <option value="19">Harghita</option>
+                <option value="20">Hunedoara</option>
+                <option value="21">Ialomița</option>
+                <option value="22">Iași</option>
+                <option value="23">Ilfov</option>
+                <option value="24">Maramureș</option>
+                <option value="25">Mehedinți</option>
+                <option value="26">Mureș</option>
+                <option value="27">Neamț</option>
+                <option value="28">Olt</option>
+                <option value="29">Prahova</option>
+                <option value="30">Satu Mare</option>
+                <option value="31">Sălaj</option>
+                <option value="32">Sibiu</option>
+                <option value="33">Suceava</option>
+                <option value="34">Teleorman</option>
+                <option value="35">Timiș</option>
+                <option value="36">Tulcea</option>
+                <option value="37">Vaslui</option>
+                <option value="38">Vâlcea</option>
+                <option value="39">Vrancea</option>
+                <option value="40">București</option>
+                <option value="41">București - Sector 1</option>
+                <option value="42">București - Sector 2</option>
+                <option value="43">București - Sector 3</option>
+                <option value="44">București - Sector 4</option>
+                <option value="45">București - Sector 5</option>
+                <option value="46">București - Sector 6</option>
+                <option value="47">București - Sector 7 (desființat)</option>
+                <option value="48">București - Sector 8 (desființat)</option>
+                <option value="51">Călărași</option>
+                <option value="52">Giurgiu</option>
+            </select>
 
-        <button id="generateCnpButton">Generate CNP</button>
+            <button id="generateCnpButton">Generate CNP</button>
+        </div>
+
+        <div id="cnpOutput"></div>
     </div>
 
-    <div id="cnpOutput"></div>
+    <script type="module" defer src="./script.js"></script>
 </body>
 </html>

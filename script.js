@@ -1,44 +1,39 @@
+// Import the generateCNP function
+import { generateCNP } from "./cnpModule/functions/cnpUtils.js";
 
-
+// Event listener for the button click
 document.getElementById('generateCnpButton').addEventListener('click', function() {
     const isForeigner = document.getElementById('isForeigner').checked;
-    const gender = document.getElementById('gender').value;
-    const yearOfBirth = parseInt(document.getElementById('yearOfBirth').value, 10);
-    const monthOfBirth = parseInt(document.getElementById('monthOfBirth').value, 10);
-    const dayOfBirth = parseInt(document.getElementById('dayOfBirth').value, 10);
-    const countyCode = parseInt(document.getElementById('countyCode').value, 10);
+    const sex = document.getElementById('sex').value; // Using 'sex' ID for sex assigned at birth
+    const yearOfBirth = document.getElementById('yearOfBirth').value; // Keep as string
+    const monthOfBirth = document.getElementById('monthOfBirth').value; // Keep as string
+    const dayOfBirth = document.getElementById('dayOfBirth').value; // Keep as string
+    const countyName = document.getElementById('countyName').value; // Changed to 'countyName'
+
+    // Convert yearOfBirth to number for validation and function call
+    const yearNum = parseInt(yearOfBirth, 10);
 
     // Validate Year of Birth
-    if (yearOfBirth < 1800 || yearOfBirth > 2099) {
-        alert("Year of Birth must be between 1800 and 2099.");
+    if (isNaN(yearNum) || yearNum < 1800 || yearNum > 2099) {
+        alert("Year of Birth must be a valid 4-digit number between 1800 and 2099.");
         return;
     }
 
     // Validate Month of Birth
-    if (monthOfBirth < 1 || monthOfBirth > 12) {
+    const monthNum = parseInt(monthOfBirth, 10);
+    if (monthNum < 1 || monthNum > 12) {
         alert("Month of Birth must be between 1 and 12.");
         return;
     }
 
     // Validate Day of Birth
-    if (dayOfBirth < 1 || dayOfBirth > 31) {
+    const dayNum = parseInt(dayOfBirth, 10);
+    if (dayNum < 1 || dayNum > 31) {
         alert("Day of Birth must be between 1 and 31.");
         return;
     }
 
-    // Validate County Code
-    if (countyCode < 1 || countyCode > 52) {
-        alert("County Code must be between 1 and 52.");
-        return;
-    }
-
     // If all validations pass, proceed to generate the CNP
-    const cnp = generateCNP(gender, yearOfBirth, monthOfBirth, dayOfBirth, countyCode, isForeigner);
+    const cnp = generateCNP(sex, yearNum, monthOfBirth, dayOfBirth, countyName, isForeigner);
     document.getElementById('cnpOutput').innerText = `Generated CNP: ${cnp}`;
 });
-
-// Placeholder for the generateCNP function
-function generateCNP(gender, yearOfBirth, monthOfBirth, dayOfBirth, countyCode, isForeigner) {
-    // Implement the logic for generating the CNP based on the inputs
-    return "1234567890123"; // Replace with actual logic
-}
