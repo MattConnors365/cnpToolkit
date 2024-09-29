@@ -1,5 +1,5 @@
 
-import { countyCodes } from "../../constants";
+import { countyCodes } from "../../constants.js";
 
 export default function getCountyCode(countyName) {
     if (countyCodes[countyName]) {
