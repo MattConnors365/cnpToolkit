@@ -9,6 +9,12 @@ document.getElementById('generateCnpButton').addEventListener('click', function(
     const monthOfBirth = document.getElementById('monthOfBirth').value; // Keep as string
     const dayOfBirth = document.getElementById('dayOfBirth').value; // Keep as string
     const countyName = document.getElementById('countyName').value; // Changed to 'countyName'
+    
+    // Handle 3-digit sequence
+    let seqDigits = document.getElementById('seqDigits').value;
+    if (seqDigits !== "") {
+        seqDigits = seqDigits.toString().padStart(3, '0'); // Pad to 3 digits
+    }
 
     // Convert yearOfBirth to number for validation and function call
     const yearNum = parseInt(yearOfBirth, 10);
@@ -34,6 +40,12 @@ document.getElementById('generateCnpButton').addEventListener('click', function(
     }
 
     // If all validations pass, proceed to generate the CNP
-    const cnp = generateCNP(sex, yearNum, monthOfBirth, dayOfBirth, countyName, isForeigner);
-    document.getElementById('cnpOutput').innerText = `Generated CNP: ${cnp}`;
+
+    try {
+        const cnp = generateCNP(sex, yearNum, monthOfBirth, dayOfBirth, countyName, isForeigner, seqDigits);
+        document.getElementById('cnpOutput').innerText = `Generated CNP: ${cnp}`;
+    } catch (error) {
+        document.getElementById('cnpOutput').innerText = `Error: ${error.message}`;
+    }
+    
 });

@@ -8,7 +8,7 @@ import generateChecksum from "./cnpGenFuncs/checksum.js";
 
 // Main functions
 
-export function generateCNP(sex, yearOfBirth, monthOfBirth, dayOfBirth, countyName, isForeigner) {
+export function generateCNP(sex, yearOfBirth, monthOfBirth, dayOfBirth, countyName, isForeigner, sequenceDigits) {
     yearOfBirth = yearOfBirth.toString();
     //Initiate cnp variable
     let cnp = '';
@@ -19,7 +19,11 @@ export function generateCNP(sex, yearOfBirth, monthOfBirth, dayOfBirth, countyNa
     //Add county code digits (8-9)
     cnp += (getCountyCode(countyName)).toString();
     //Add random sequence digits (10-12)
-    cnp += (generateUniqueCode()).toString();
+    if (sequenceDigits !== "") { // If sequence input by user
+        cnp += sequenceDigits; // Add input
+    } else {
+        cnp += (generateUniqueCode()).toString(); // If not, generate the sequence
+    }
     //Add checksum digit (13)
     const checksum = generateChecksum(cnp);
     cnp += checksum;
