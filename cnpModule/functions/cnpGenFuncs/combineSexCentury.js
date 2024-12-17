@@ -3,7 +3,7 @@ export default function combineSexAndCentury(sexAtBirth, yearOfBirth, isForeigne
     // Parameter types expected, in order: string ('Male'/'Female'), number (4 digits), boolean
     if (typeof sexAtBirth !== 'string') 
         {throw new Error(`The sexAtBirth parameter must be assigned either the string value 'Male' or 'Female`)}
-    if (typeof yearOfBirth !== 'number' || yearOfBirth.toString().length !== 4)
+    if (typeof yearOfBirth !== 'number' && yearOfBirth.toString().length !== 4)
         {throw new Error(`The yearOfBirth parameter must be a number of 4 digits`)}
     if (typeof isForeigner !== 'boolean') 
         {throw new Error(`The isForeigner parameter must be a boolean`)}

@@ -9,12 +9,13 @@ import generateChecksum from "./cnpGenFuncs/checksum.js";
 // Main functions
 
 export function generateCNP(sex, yearOfBirth, monthOfBirth, dayOfBirth, countyName, isForeigner) {
+    yearOfBirth = yearOfBirth.toString();
     //Initiate cnp variable
     let cnp = '';
     //Add sex and century digit (1)
     cnp += (combineSexAndCentury(sex, yearOfBirth, isForeigner)).toString();
     //Add date of birth digits (2-7)
-    cnp += (generateDateOfBirthSequence(yearOfBirth, monthOfBirth, dayOfBirth)).toString();
+    cnp += (generateDateOfBirthSequence(yearOfBirth, monthOfBirth.toString(), dayOfBirth)).toString();
     //Add county code digits (8-9)
     cnp += (getCountyCode(countyName)).toString();
     //Add random sequence digits (10-12)
