@@ -5,7 +5,9 @@ import generateDateOfBirthSequence from "./cnpGenFuncs/genDOBseq.js";
 import getCountyCode from "./cnpGenFuncs/getCountyCode.js";
 import generateUniqueCode from "./cnpGenFuncs/genUniqueCode.js";
 import generateChecksum from "./cnpGenFuncs/checksum.js";
-
+/// For CNP deconstruction
+import extractSexAndCentury from "./cnpAnalysisFuncs/extractSexAndCentury.js";
+import extractDateOfBirth from "./cnpAnalysisFuncs/extractDateOfBirth.js";
 // Main functions
 
 export function generateCNP(sex, yearOfBirth, monthOfBirth, dayOfBirth, countyName, isForeigner, sequenceDigits) {
@@ -32,7 +34,17 @@ export function generateCNP(sex, yearOfBirth, monthOfBirth, dayOfBirth, countyNa
 };
 
 export function analyzeCNP(cnp) {
+    const {sex, yearStart, isForeigner} = extractSexAndCentury(cnp.charAt(0));
+    const {yearOfBirth, monthOfBirth, dayOfBirth} = extractDateOfBirth(yearStart, cnp);
 
+    return {
+        sex,
+        isForeigner,
+
+        yearOfBirth,
+        monthOfBirth,
+        dayOfBirth,
+    }
 };
 
 
