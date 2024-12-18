@@ -15,6 +15,10 @@ document.getElementById('generateCnpButton').addEventListener('click', function(
     if (seqDigits !== "") {
         seqDigits = seqDigits.toString().padStart(3, '0'); // Pad to 3 digits
     }
+    if (Number(seqDigits) >= 1000 || Number(seqDigits) <= 0) {
+        alert(`The sequence ${seqDigits} must be between 001 and 999`);
+        throw new Error(`The sequence ${seqDigits} must be between 001 and 999`);
+    }
 
     // Convert yearOfBirth to number for validation and function call
     const yearNum = parseInt(yearOfBirth, 10);
