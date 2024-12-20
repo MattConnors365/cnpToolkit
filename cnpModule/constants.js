@@ -56,4 +56,10 @@ export const countyCodes = {
     "Călărași": "51",
     "Giurgiu": "52"
 };
+
+// For CNP analysis
+export const codesToCounties = Object.entries(countyCodes).reduce((acc, [key, value]) => {
+    acc[value] = key;
+    return acc;
+}, {});
 //////

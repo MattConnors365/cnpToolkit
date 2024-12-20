@@ -8,6 +8,7 @@ import generateChecksum from "./cnpGenFuncs/checksum.js";
 /// For CNP deconstruction
 import extractSexAndCentury from "./cnpAnalysisFuncs/extractSexAndCentury.js";
 import extractDateOfBirth from "./cnpAnalysisFuncs/extractDateOfBirth.js";
+import extractCountyName from "./cnpAnalysisFuncs/extractCountyName.js";
 // Main functions
 
 export function generateCNP(sex, yearOfBirth, monthOfBirth, dayOfBirth, countyName, isForeigner, sequenceDigits) {
@@ -36,6 +37,8 @@ export function generateCNP(sex, yearOfBirth, monthOfBirth, dayOfBirth, countyNa
 export function analyzeCNP(cnp) {
     const {sex, yearStart, isForeigner} = extractSexAndCentury(cnp.charAt(0));
     const {yearOfBirth, monthOfBirth, dayOfBirth} = extractDateOfBirth(yearStart, cnp);
+    const countyName = extractCountyName(cnp.slice(7, 9));
+    const sequence = cnp.slice(9, 12);
 
     return {
         sex,
@@ -44,6 +47,10 @@ export function analyzeCNP(cnp) {
         yearOfBirth,
         monthOfBirth,
         dayOfBirth,
+
+        countyName,
+
+        sequence,
     }
 };
 
