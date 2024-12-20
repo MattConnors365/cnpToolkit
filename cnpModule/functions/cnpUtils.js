@@ -1,10 +1,10 @@
 // Imports
+import generateChecksum from "./utilities/checksum.js";
 /// For CNP generation
 import combineSexAndCentury from "./cnpGenFuncs/combineSexCentury.js";
 import generateDateOfBirthSequence from "./cnpGenFuncs/genDOBseq.js";
 import getCountyCode from "./cnpGenFuncs/getCountyCode.js";
 import generateUniqueCode from "./cnpGenFuncs/genUniqueCode.js";
-import generateChecksum from "./cnpGenFuncs/checksum.js";
 /// For CNP deconstruction
 import extractSexAndCentury from "./cnpAnalysisFuncs/extractSexAndCentury.js";
 import extractDateOfBirth from "./cnpAnalysisFuncs/extractDateOfBirth.js";
@@ -36,9 +36,18 @@ export function generateCNP(sex, yearOfBirth, monthOfBirth, dayOfBirth, countyNa
 
 export function analyzeCNP(cnp) {
     const {sex, yearStart, isForeigner} = extractSexAndCentury(cnp.charAt(0));
+
     const {yearOfBirth, monthOfBirth, dayOfBirth} = extractDateOfBirth(yearStart, cnp);
+
     const countyName = extractCountyName(cnp.slice(7, 9));
+
     const sequence = cnp.slice(9, 12);
+
+    const checksum = String(generateChecksum(cnp.slice(0, 12)));
+    const checksumReturn = {
+        "isChecksumValid": checksum === cnp.charAt(12),
+        "calculatedChecksum": checksum
+    };
 
     return {
         sex,
@@ -51,6 +60,8 @@ export function analyzeCNP(cnp) {
         countyName,
 
         sequence,
+
+        checksumReturn
     }
 };
 
