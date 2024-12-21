@@ -1,5 +1,5 @@
 
-import { validMonths } from "../../constants";
+import { validMonths } from "../../constants.js";
 
 export default function getMonthNameFromNumber(monthNumber) {
     if (monthNumber < 1 || monthNumber > 12 || isNaN(monthNumber)) {

@@ -5,9 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CNP Toolkit</title>
     <style>
+        .navbar {
+        display: flex;
+        justify-content: center;
+        background-color: #333;
+        padding: 10px;
+        }
+        .navbar button {
+            color: white;
+            background-color: transparent;
+            border: 1px solid white;
+            margin: 0 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .navbar button:hover {
+            background-color: #555;
+        }
+        .navbar button.active {
+            background-color: #007BFF;
+            color: white;
+        }
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            background-color: black;
+            color: whitesmoke;
         }
         .container {
             max-width: 400px;
@@ -38,12 +62,16 @@
             margin-top: 20px;
             padding: 10px;
             border: 1px solid #ccc;
-            background-color: #f9f9f9;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="navbar">
+        <button id="encoderTab">Encoder</button>
+        <button id="decoderTab">Decoder</button>
+    </div>
+
+    <div class="container" id="encoderPage" style="display:none">
         <h1>CNP Toolkit</h1>
         <div id="cnpContainer">
             <label for="isForeigner">Is Foreigner:</label>
@@ -138,6 +166,43 @@
         </div>
 
         <div id="cnpOutput"></div>
+    </div>
+
+    <div class="container" id="decoderPage">
+        <h1>CNP Decoder</h1>
+        <label for="cnpDecoderInput">Enter a CNP to decode:</label>
+        <input id="cnpDecoderInput">
+        <button id="decodeCnpButton">Decode</button>
+
+        <!--These will display the decoded information once calculated-->
+        <p>This is the information that was decoded from the provided CNP:</p>
+        
+        <label for="decodedSexDisplay">Sex (Assigned at Birth):</label>
+        <input id="decodedSexDisplay">
+
+        <label for="decodedForeignStatusDisplay">The person is a foreigner:</label>
+        <input id="decodedForeignStatusDisplay">
+
+        <label for="decodedYobDisplay">Year of birth:</label>
+        <input id="decodedYobDisplay">
+
+        <label for="decodedMobDisplay">Month of Birth:</label>
+        <input id="decodedMobDisplay">
+
+        <label for="decodedDobDisplay">Day of Birth:</label>
+        <input id="decodedDobDisplay">
+
+        <label for="decodedCountyDisplay">County in which the CNP was issued:</label>
+        <input id="decodedCountyDisplay">
+        
+        <label for="transcribedSequenceDisplay">Assigned sequence:</label>
+        <input id="transcribedSequenceDisplay">
+
+        <label for="decodedChecksumIsValidDisplay">Is the checksum valid:</label>
+        <input id="decodedChecksumIsValidDisplay">
+
+        <label for="decodedCalculatedChecksumDisplay">Calculated checksum:</label>
+        <input id="decodedCalculatedChecksumDisplay">
     </div>
 
     <script type="module" defer src="./script.js"></script>
