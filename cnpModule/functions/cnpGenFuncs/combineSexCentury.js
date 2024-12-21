@@ -1,4 +1,24 @@
-
+/**
+ * Combines the sex, year of birth, and foreigner status to generate a 1-digit code 
+ * that encodes these three pieces of information for CNP generation.
+ * 
+ * The function generates a 1-digit number using the following logic:
+ * - Male: 1, Female: 2
+ * - If the person is a foreigner, add 6 to the base digit.
+ * - If not a foreigner, the second digit of the year determines the value to add:
+ *      - If the second digit of the year is '8', add 2
+ *      - If the second digit of the year is '0', add 4
+ *      - If the second digit of the year is '9', add 0
+ * 
+ * @param {string} sexAtBirth - The sex assigned at birth. Must be either "Male" or "Female".
+ * @param {number} yearOfBirth - The year of birth, in number format. Must be a 4-digit number between 1800 and 2099.
+ * @param {boolean} isForeigner - Whether the person is a foreigner, i.e., born outside Romania.
+ * @returns {number} - A 1-digit number encoding the sex, century, and foreigner status.
+ * @throws {Error} - Throws an error if any of the following apply:
+ *      - `sexAtBirth` isn't a string or isn't "Male" or "Female".
+ *      - `yearOfBirth` isn't a number or isn't a 4-digit number between 1800-2099.
+ *      - `isForeigner` isn't a boolean.
+ */
 export default function combineSexAndCentury(sexAtBirth, yearOfBirth, isForeigner) {
     // Parameter types expected, in order: string ('Male'/'Female'), number (4 digits), boolean
     if (typeof sexAtBirth !== 'string') 

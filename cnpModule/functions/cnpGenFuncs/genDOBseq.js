@@ -1,5 +1,24 @@
 import { validMonths } from "../../constants.js";
 
+/**
+ * Generates a 6-digit sequence based on a given birth date (year, month, day).
+ * The sequence consists of:
+ *      - 2 digits representing the last 2 digits of the year (e.g. for 1971 the last two digits are "71").
+ *      - 2 digits for the month (1 through 12). If the month is a single digit, it is zero-padded (e.g. "01" for January).
+ *      - 2 digits for the day of the month (1 through 31). If the day is a single digit, it is zero-padded (e.g. "05" for the 5th).
+ *
+ * @param {string} year - The year of birth, must be a string representation of a year between 1800 and 2099.
+ * @param {string} month - The month of birth, spelled out in English (e.g., "January", "February", etc.).
+ * @param {string} day - The day of birth, must be a string representation of a day between 1 and 31.
+ * @returns {string} - A 6-digit string representing the date of birth in the format: 'YYMMDD'.
+ *      - `YY` = last two digits of the year.
+ *      - `MM` = month (zero-padded if needed).
+ *      - `DD` = day (zero-padded if needed).
+ * @throws {Error} - Throws an error if any of the parameters are invalid:
+ *      - `year` must be a number between 1800 and 2099.
+ *      - `month` must be a valid month name from `validMonths`.
+ *      - `day` must be a number between 1 and 31.
+ */
 export default function generateDateOfBirthSequence(year, month, day) { 
     // Ensure inputs are non-empty strings and trim spaces
     if (typeof year !== 'string' || year.trim() === '') {

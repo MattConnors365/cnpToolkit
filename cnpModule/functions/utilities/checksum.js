@@ -1,3 +1,10 @@
+/**
+ * A function to generate a given CNP's checksum
+ * 
+ * @param {number|string} unfinishedCNP - The unfinished CNP (only the first 12 of 13 characters)
+ * @returns {number} - 1-digit checksum
+ * @throws {Error} - If the parameter is neither a number nor a string, or if it is not 12 characters long, the function will throw an error.
+ */
 
 // Expected result: 1-digit number
 export default function generateChecksum(unfinishedCNP) {

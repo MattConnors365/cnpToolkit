@@ -1,6 +1,18 @@
 import getMonthNameFromNumber from "../utilities/getMonthNaFromNu.js";
 import capitalizeString from "../utilities/capitalize.js";
 
+/**
+ * A function to extract the date of birth from a given CNP, encoded in the digits 2-7
+ * @param {number|string} centuryNumber - Either the numbers 18, 19, 20, or the string "XX"
+ * @param {number|string} cnp - The CNP being analyzed 
+ * @returns {Object} - An object containing the following:
+ *      - yearOfBirth: string (between 1800-2099)
+ *      - monthOfBirth: string (spelled out in English)
+ *      - dayOfBirth: string (between 1-31)
+ * @throws {Error} - Throws an error if:
+ *      - centuryNumber is neither a 2-digit number nor the string "XX"
+ *      - cnp isn't a 13-digit long number or numeric string
+ */
 export default function extractDateOfBirth(centuryNumber, cnp) {
     // Validation
     if ((typeof centuryNumber !== "number" || centuryNumber.toString().length !== 2) && centuryNumber !== "XX") {
